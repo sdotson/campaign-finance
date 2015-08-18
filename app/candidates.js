@@ -4,28 +4,47 @@ angular.module('candidates', [])
 candidatesService.$inject = ['$http'];
 function candidatesService($http) {
     var candidatesService = {
-        getCandidates: getCandidates
+        getCandidates: getCandidates,
+        getTopCandidates: getTopCandidates
     };
 
     function getCandidates() {
         var request = $http({
-            url: '',
+            url: 'http://realtime.influenceexplorer.com/api//candidates/',
             method: 'GET',
             cache: true,
             params: {
-
+                format: 'json',
+                apikey: '5fb0ee006d904354961ae1e83e80011b',
+                office: 'P',
+                sort: 'cash_on_hand acs'
             }
         });
         return request.then(countriesSuccess, countriesError);
     }
 
     function countriesSuccess(response) {
-        console.log(response);
+        console.log(response.data.results);
+        return response.data.results;
     }
 
     function countriesError(response) {
         console.log(response);
     }
+
+    function getTopCandidates() {
+        var request = $http({
+            url: 'http://transparencydata.com/api/1.0/aggregates/pols/top_1.json',
+            method: 'GET',
+            cache: true,
+            params: {
+                apikey: '5fb0ee006d904354961ae1e83e80011b',
+                cycle: '2016'
+            }
+        });
+        return request.then(countriesSuccess, countriesError);
+    }
+
 
     return candidatesService;
 }
@@ -35,7 +54,7 @@ function candidatesService($http) {
 
 http://sunlightlabs.github.io/realtime-docs/candidates
 
-API key: 5fb0ee006d904354961ae1e83e80011b
+API key: 
 
 
 
