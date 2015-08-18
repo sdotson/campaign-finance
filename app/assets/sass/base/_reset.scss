@@ -1,0 +1,32 @@
+html, body, div, span, applet, object, iframe, 
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td { margin:0; padding:0; }
+img { border: 0px; font-family: "Helvetica Neue", Helvetica, arial, sans-serif;}
+/* Force the vertical scrollbar in FF */
+html { overflow-y: scroll; }
+
+.clearfix:after {content: "."; display: block; height: 0; clear: both; visibility: hidden;}
+.clearfix {display: inline-block;}
+* html .clearfix { height: 1%;}
+.clearfix {display: block;}
+
+/* apply a natural box layout model to all elements */
+*, *:before, *:after {
+  -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+}
+
+/* HTML5 elements */
+section, header, footer, article, aside, nav, main, figure, figcaption {
+	display: block;
+}
+
+/* make sure images don't break the layout */
+img {
+	max-width:100%;
+	height:auto;
+}

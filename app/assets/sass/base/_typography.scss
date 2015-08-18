@@ -1,0 +1,32 @@
+::selection {
+	background-color: gray;
+}
+::-moz-selection {
+	background-color: gray;	
+}
+
+/* typography */
+body {
+	font-family: 'Raleway', sans-serif;
+	font-size: 16px;
+	color: #212121;
+	-webkit-font-smoothing: antialiased;
+
+	@media screen and (max-width: 400px) {
+		font-size: 16px;
+	}
+}
+
+p, ul, ol, blockquote {
+	margin-bottom: 21px;
+}
+
+h2, h3, h4, h5 ,h6 {
+	line-height: 1.3;
+	margin-bottom: 21px;
+	text-transform: uppercase;
+
+	@media screen and (max-width: 400px) {
+		line-height: 1.1;
+	}
+}

@@ -1,0 +1,13 @@
+/* mixins and variables */
+@import 'helpers/variables';
+@import 'helpers/mixins';
+@import 'helpers/helper-classes';
+
+/* basics and reset */
+@import 'base/reset';
+@import 'base/typography';
+
+/* components */
+@import 'components/tables';
+@import 'components/home';
+@import 'components/candidate';

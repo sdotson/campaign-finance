@@ -1,4 +1,5 @@
 var gulp = require('gulp'),
+    sass = required('gulp-sass'),
     browserSync = require('browser-sync'),
     ghpages = require('gulp-gh-pages'),
     concat = require('gulp-concat'),
@@ -11,6 +12,13 @@ gulp.task('browser-sync', function() {
             baseDir: "./app"
         }
     });
+});
+
+gulp.task('sass', function () {
+    gulp.src('app/assets/sass/**/*')
+        .pipe(sass({outputStyle: 'compressed'}))
+        .pipe(concat('styles.css'))
+        .pipe(gulp.dest('app/assets/css'));
 });
 
 var files = ['app/main.css',
@@ -33,5 +41,5 @@ gulp.task('deploy', ['build'],function() {
 });
 
 gulp.task('default', ['browser-sync'], function () {
-    
+    gulp.watch("app/assets/sass/*/*.scss", ['sass']);
 });
