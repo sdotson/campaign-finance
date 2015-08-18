@@ -17,14 +17,14 @@ function candidatesService($http) {
                 format: 'json',
                 apikey: '5fb0ee006d904354961ae1e83e80011b',
                 office: 'P',
-                sort: 'cash_on_hand acs'
+
             }
         });
         return request.then(countriesSuccess, countriesError);
     }
 
     function countriesSuccess(response) {
-        console.log(response.data.results);
+        console.log(response.data);
         return response.data.results;
     }
 
