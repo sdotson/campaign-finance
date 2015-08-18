@@ -1,1 +1,1 @@
-angular.module('campaignFinanceApp', []);
+angular.module('campaignFinanceApp', ['home','candidate']);
