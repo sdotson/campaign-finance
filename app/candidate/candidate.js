@@ -5,7 +5,7 @@ angular.module('candidate', ['ngRoute'])
 
 config.$inject = ['$routeProvider'];
 function config($routeProvider) {
-    $routeProvider.when('/', {
+    $routeProvider.when('/candidate', {
         templateUrl: 'candidate/candidate.html',
         controller: 'CandidateCtrl'
     });
