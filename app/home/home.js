@@ -10,16 +10,12 @@ function config($routeProvider) {
         resolve: {
             candidates: function(candidatesService) {
                 return candidatesService.getCandidates();
-            },
-            topCandidates: function(candidatesService) {
-                return candidatesService.getTopCandidates();
             }
         }
     });
 }
 
-HomeCtrl.$inject = ['$scope','candidates', 'topCandidates'];
-function HomeCtrl($scope, candidates, topCandidates) {
+HomeCtrl.$inject = ['$scope','candidates'];
+function HomeCtrl($scope, candidates) {
     $scope.candidates = candidates;
-    $scope.topCandidates = topCandidates;
 }
