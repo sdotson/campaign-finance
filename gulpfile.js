@@ -7,7 +7,7 @@ var gulp = require('gulp'),
     ngmin = require('gulp-ngmin');
 
 gulp.task('browser-sync', function() {
-    browserSync.init(["app/*.css", 'app/*.js','app/*.html'], {
+    browserSync.init(["app/**", 'app/**','app/**'], {
         server: {
             baseDir: "./app"
         }

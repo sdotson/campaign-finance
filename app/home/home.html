@@ -1,3 +1,28 @@
-<p>I'm home view.</p>
-<p>Check out <a href="#/candidate">candidate view.</a></p>
-<div ng-repeat="c in candidates">{{c.name}} - {{c.party}} - {{c.cash_on_hand}}</div>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Party</th>
+            <th>Expenditures Supporting</th>
+            <th>Expenditures Opposing</th>
+            <th>Total receipts</th>
+            <th>Total contributions</th>
+            <th>Total disbursements</th>
+            <th>Cash on hand</th>
+            <th>Outstanding loans</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="c in candidates | limitTo: 15">
+            <td>{{c.name}}</td>
+            <td>{{c.party}}</td>
+            <td>{{c.expenditures_supporting | currency:undefined:0}}</td>
+            <td>{{c.expenditures_opposing | currency:undefined:0}}</td>
+            <td>{{c.total_receipts | currency:undefined:0}}</td>
+            <td>{{c.total_contributions | currency:undefined:0}}</td>
+            <td>{{c.total_disbursements | currency:undefined:0}}</td>
+            <td>{{c.cash_on_hand | currency:undefined:0}}</td>
+            <td>{{c.outstanding_loans | currency:undefined:0}}</td>
+        </tr>
+    </tbody>
+</table>

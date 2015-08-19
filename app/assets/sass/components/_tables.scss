@@ -1,1 +1,18 @@
 /* tables */
+table {
+    text-align: left;
+    border-collapse: collapse;
+}
+
+td, th {
+    padding: 3px;
+}
+
+thead {
+    background-color: #212121;
+    color: #fff;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #e1e1e1;
+}
