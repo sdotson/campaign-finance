@@ -21,6 +21,9 @@ function config($routeProvider) {
 
                 newName = newName.join(" ");
 
+                console.log(routeName);
+                console.log(newName);
+
                 return candidatesService.getCandidateEntityID(newName);
             }],
             cname: ['$route', function($route) {
