@@ -1,11 +1,11 @@
 angular.module('candidates', [])
     .factory('candidatesService', candidatesService);
 
-candidatesService.$inject = ['$http'];
-function candidatesService($http) {
+candidatesService.$inject = ['$http','$q'];
+function candidatesService($http, $q) {
     var candidatesService = {
         getCandidates: getCandidates,
-        getCandidateEntityID: getCandidateEntityID
+        getCandidateDetails: getCandidateDetails
     };
 
     function getCandidates() {
@@ -17,7 +17,7 @@ function candidatesService($http) {
         return request.then(candidatesSuccess, errorHandler);
     }
 
-    function getCandidateEntityID(name) {
+    function getCandidateDetails(name) {
         var request = $http({
             url: 'http://transparencydata.org/api/1.0/entities.json',
             method: 'JSONP',
@@ -34,9 +34,8 @@ function candidatesService($http) {
     }
 
     function getContributers(response) {
-        console.log('entity response');
-        console.log(response);
         var entityID = response.data[0].id;
+
         var request = $http({
             url: 'http://transparencydata.org/api/1.0/aggregates/pol/' + entityID + '/contributors.json',
             method: 'JSONP',
@@ -45,7 +44,23 @@ function candidatesService($http) {
                 apikey: "5fb0ee006d904354961ae1e83e80011b",
                 callback: 'JSON_CALLBACK',
             }
-        })
+        });
+
+        return request.then(candidatesSuccess, errorHandler);
+    }
+
+    function getIndustries(response) {
+        var entityID = response.data[0].id;
+
+        var request = $http({
+            url: 'http://transparencydata.org/api/1.0/aggregates/pol/' + entityID + 'contributors/industries.json',
+            method: 'JSONP',
+            cache: true,
+            params: {
+                apikey: "5fb0ee006d904354961ae1e83e80011b",
+                callback: 'JSON_CALLBACK',
+            }
+        });
 
         return request.then(candidatesSuccess, errorHandler);
     }
