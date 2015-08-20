@@ -11,12 +11,16 @@ function config($routeProvider) {
         resolve: {
             contributers: ['candidatesService', '$route', function(candidatesService, $route) {
                 return candidatesService.getCandidateEntityID($route.current.params.cname);
+            }],
+            cname: ['$route', function($route) {
+                return $route.current.params.cname;
             }]
         }
     });
 }
 
-CandidateCtrl.$inject = ['$scope','contributers'];
-function CandidateCtrl($scope, contributers) {
+CandidateCtrl.$inject = ['$scope','contributers','cname'];
+function CandidateCtrl($scope, contributers, cname) {
+    $scope.name = cname;
     $scope.contributers = contributers;
 }

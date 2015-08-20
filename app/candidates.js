@@ -14,7 +14,7 @@ function candidatesService($http) {
             method: 'GET',
             cache: true
         });
-        return request.then(candidatesSuccess, candidatesError);
+        return request.then(candidatesSuccess, errorHandler);
     }
 
     function getCandidateEntityID(name) {
@@ -30,10 +30,12 @@ function candidatesService($http) {
             }
         })
 
-        return request.then(getContributers, candidatesError);
+        return request.then(getContributers, errorHandler);
     }
 
     function getContributers(response) {
+        console.log('entity response');
+        console.log(response);
         var entityID = response.data[0].id;
         var request = $http({
             url: 'http://transparencydata.org/api/1.0/aggregates/pol/' + entityID + '/contributors.json',
@@ -45,7 +47,7 @@ function candidatesService($http) {
             }
         })
 
-        return request.then(candidatesSuccess, candidatesError);
+        return request.then(candidatesSuccess, errorHandler);
     }
 
     function candidatesSuccess(response) {
@@ -53,8 +55,9 @@ function candidatesService($http) {
         return response.data;
     }
 
-    function candidatesError(response) {
+    function errorHandler(response) {
         console.log(response);
+        return response;
     }
 
 
