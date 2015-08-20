@@ -4,7 +4,8 @@ angular.module('candidates', [])
 candidatesService.$inject = ['$http'];
 function candidatesService($http) {
     var candidatesService = {
-        getCandidates: getCandidates
+        getCandidates: getCandidates,
+        getCandidateEntityID: getCandidateEntityID
     };
 
     function getCandidates() {
@@ -13,29 +14,49 @@ function candidatesService($http) {
             method: 'GET',
             cache: true
         });
-        return request.then(countriesSuccess, countriesError);
+        return request.then(candidatesSuccess, candidatesError);
     }
 
-    function countriesSuccess(response) {
+    function getCandidateEntityID(name) {
+        var request = $http({
+            url: 'http://transparencydata.org/api/1.0/entities.json',
+            method: 'JSONP',
+            cache: true,
+            params: {
+                apikey: "5fb0ee006d904354961ae1e83e80011b",
+                search: name,
+                type: "politician",
+                callback: 'JSON_CALLBACK',
+            }
+        })
+
+        return request.then(getContributers, candidatesError);
+    }
+
+    function getContributers(response) {
+        var entityID = response.data[0].id;
+        var request = $http({
+            url: 'http://transparencydata.org/api/1.0/aggregates/pol/' + entityID + '/contributors.json',
+            method: 'JSONP',
+            cache: true,
+            params: {
+                apikey: "5fb0ee006d904354961ae1e83e80011b",
+                callback: 'JSON_CALLBACK',
+            }
+        })
+
+        return request.then(candidatesSuccess, candidatesError);
+    }
+
+    function candidatesSuccess(response) {
         console.log(response.data);
         return response.data;
     }
 
-    function countriesError(response) {
+    function candidatesError(response) {
         console.log(response);
     }
 
 
     return candidatesService;
 }
-
-
-/*
-
-http://sunlightlabs.github.io/realtime-docs/candidates
-
-API key: 
-
-
-
-*/
