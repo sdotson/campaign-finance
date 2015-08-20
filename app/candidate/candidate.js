@@ -10,7 +10,18 @@ function config($routeProvider) {
         controller: 'CandidateCtrl',
         resolve: {
             contributers: ['candidatesService', '$route', function(candidatesService, $route) {
-                return candidatesService.getCandidateEntityID($route.current.params.cname);
+                
+                /* some extra stuff in here because api throws a fit if middle names are included */
+                var routeName = $route.current.params.cname,
+                    newName = routeName.split(' ');
+
+                if (newName.length > 2) {
+                    newName.splice(2, newName.length - 1)
+                };
+
+                newName = newName.join(" ");
+
+                return candidatesService.getCandidateEntityID(newName);
             }],
             cname: ['$route', function($route) {
                 return $route.current.params.cname;
