@@ -10,9 +10,6 @@ function config($routeProvider) {
         resolve: {
             candidates: function(candidatesService) {
                 return candidatesService.getCandidates();
-            },
-            test: function(candidatesService) {
-                return candidatesService.getCandidateEntityID('Sanders, Bernard');
             }
         }
     });

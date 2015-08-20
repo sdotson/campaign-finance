@@ -14,7 +14,7 @@
     </thead>
     <tbody>
         <tr ng-repeat="c in candidates | limitTo: 15">
-            <td><a href="#">{{c.name}}</a></td>
+            <td><a ng-href="#/candidate/{{c.name}}">{{c.name}}</a></td>
             <td>{{c.party}}</td>
             <td>{{c.expenditures_supporting | currency:undefined:0}}</td>
             <td>{{c.expenditures_opposing | currency:undefined:0}}</td>

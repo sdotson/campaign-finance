@@ -1,2 +1,20 @@
-<p>I'm candidate view.</p>
+<h2>Top Contributers</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Direct Amount</th>
+            <th>Total Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="c in contributers">
+            <td>{{c.name}}</td>
+            <td>{{c.direct_amount | currency:undefined:0}}</td>
+            <td>{{c.total_amount | currency:undefined:0}}</td>
+        </tr>
+    </tbody>
+</table>
+
+
 <p>Back to <a href="#/">home view.</a></p>
