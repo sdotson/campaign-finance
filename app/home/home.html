@@ -1,3 +1,27 @@
+<div class="toolbar">
+    <form name="criteria">
+        <p>Show me
+            <select ng-model="criteria.sortBy" ng-init="criteria.sortBy = 'cash_on_hand'">
+                <option value="total_receipts">Total receipts</option>
+                <option value="total_contributions">Total contributions</option>
+                <option value="total_disbursements">Total disbursements</option>
+                <option value="cash_on_hand">Cash on hand</option>
+                <option value="outstanding_loans">Outstanding loans</option>
+            </select>
+             including
+             <select ng-model="criteria.include" ng-init="criteria.include = 'all'">
+                <option value="">All</option>
+                <option value="D">Democrats</option>
+                <option value="R">Republicans</option>
+             </select>
+             sort
+             <select ng-model="criteria.sortDirection" ng-init="criteria.sortDirection = '-'">
+                <option value="+">ascending</option>
+                <option value="-">descending</option>
+             </select>
+         </p>
+    </form>
+</div>
 <table>
     <thead>
         <tr>
@@ -13,7 +37,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr ng-repeat="c in candidates | limitTo: 15">
+        <tr ng-repeat="c in candidates | filter: {'party': criteria.include} | orderBy: criteria.sortDirection + criteria.sortBy | limitTo: 15">
             <td><a ng-href="#/candidate/{{c.name}}">{{c.name}}</a></td>
             <td>{{c.party}}</td>
             <td>{{c.expenditures_supporting | currency:undefined:0}}</td>
