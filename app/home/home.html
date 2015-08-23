@@ -3,6 +3,8 @@
         <p>Show me
             <select ng-model="criteria.sortBy" ng-init="criteria.sortBy = 'cash_on_hand'">
                 <option value="total_receipts">total receipts</option>
+                <option value="expenditures_supporting">outside supporting</option>
+                <option value="expenditures_opposing">outside opposing</option>
                 <option value="total_contributions">total contributions</option>
                 <option value="total_disbursements">total disbursements</option>
                 <option value="cash_on_hand">cash on hand</option>
@@ -27,8 +29,8 @@
         <tr>
             <th>Name</th>
             <th>Party</th>
-            <th>Expenditures Supporting</th>
-            <th>Expenditures Opposing</th>
+            <th>Outside Supporting</th>
+            <th>Outside Opposing</th>
             <th>Total receipts</th>
             <th>Total contributions</th>
             <th>Total disbursements</th>
