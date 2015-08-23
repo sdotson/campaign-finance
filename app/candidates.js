@@ -18,35 +18,64 @@ function candidatesService($http, $q) {
     }
 
     function getCandidateDetails(name) {
+
+       /* alter name to suit imperfect api lookup */
+        var routeName = name,
+            newName = routeName.split(' ');
+
+        if (newName.length > 2) {
+            newName.splice(2, newName.length - 1)
+        };
+
+        newName = newName.join(" ");
+
+        switch (newName) {
+            case "CRUZ, RAFAEL":
+                newName = "Ted Cruz";
+                break;
+            case "PERRY, JAMES":
+                newName = "Rick Perry";
+                break;
+        };
+
+
         var request = $http({
             url: 'http://transparencydata.org/api/1.0/entities.json',
             method: 'JSONP',
             cache: true,
             params: {
                 apikey: "5fb0ee006d904354961ae1e83e80011b",
-                search: name,
+                search: newName,
                 type: "politician",
                 callback: 'JSON_CALLBACK',
             }
         })
 
-        return request.then(getContributers, errorHandler);
+        return request.then(getContributers, entityErrorHandler);
     }
 
     function getContributers(response) {
-        var entityID = response.data[0].id;
+        console.log('entity response');
+        console.log(response);
+        if (response.data[0]) {
+            var entityID = response.data[0].id;
 
-        var request = $http({
-            url: 'http://transparencydata.org/api/1.0/aggregates/pol/' + entityID + '/contributors.json',
-            method: 'JSONP',
-            cache: true,
-            params: {
-                apikey: "5fb0ee006d904354961ae1e83e80011b",
-                callback: 'JSON_CALLBACK',
-            }
-        });
+            var request = $http({
+                url: 'http://transparencydata.org/api/1.0/aggregates/pol/' + entityID + '/contributors.json',
+                method: 'JSONP',
+                cache: true,
+                params: {
+                    apikey: "5fb0ee006d904354961ae1e83e80011b",
+                    callback: 'JSON_CALLBACK',
+                }
+            });
 
-        return request.then(candidatesSuccess, errorHandler);
+            return request.then(candidatesSuccess, errorHandler);
+
+        } else {
+            return false;  
+        };
+
     }
 
     function getIndustries(response) {
@@ -66,12 +95,15 @@ function candidatesService($http, $q) {
     }
 
     function candidatesSuccess(response) {
-        console.log(response.data);
+        console.log(response);
         return response.data;
     }
 
     function errorHandler(response) {
-        console.log(response);
+        return response;
+    }
+
+    function entityErrorHandler(response) {
         return response;
     }
 

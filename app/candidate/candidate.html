@@ -1,6 +1,6 @@
 <h2>{{name}}</h2>
 <h3>Top Contributers</h3>
-<table>
+<table ng-show="contributers">
     <thead>
         <tr>
             <th>Name</th>
@@ -16,5 +16,6 @@
         </tr>
     </tbody>
 </table>
+<p ng-show="!contributers">Entity ID lookup for this candidate failed.</p>
 
 <p>Back to <a href="#/">home view.</a></p>
