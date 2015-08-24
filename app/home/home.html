@@ -42,13 +42,13 @@
         <tr ng-repeat="c in candidates | filter: {'party': criteria.include} | orderBy: criteria.sortDirection + criteria.sortBy | limitTo: 15">
             <td><a ng-href="#/candidate/{{c.name}}">{{c.name}}</a></td>
             <td>{{c.party}}</td>
-            <td>{{c.expenditures_supporting | currency:undefined:0}}</td>
-            <td>{{c.expenditures_opposing | currency:undefined:0}}</td>
-            <td>{{c.total_receipts | currency:undefined:0}}</td>
-            <td>{{c.total_contributions | currency:undefined:0}}</td>
-            <td>{{c.total_disbursements | currency:undefined:0}}</td>
-            <td>{{c.cash_on_hand | currency:undefined:0}}</td>
-            <td>{{c.outstanding_loans | currency:undefined:0}}</td>
+            <td ng-class="{'active': criteria.sortBy === 'expenditures_supporting' }">{{c.expenditures_supporting | currency:undefined:0}}</td>
+            <td ng-class="{'active': criteria.sortBy === 'expenditures_opposing' }">{{c.expenditures_opposing | currency:undefined:0}}</td>
+            <td ng-class="{'active': criteria.sortBy === 'total_receipts' }">{{c.total_receipts | currency:undefined:0}}</td>
+            <td ng-class="{'active': criteria.sortBy === 'total_contributions' }">{{c.total_contributions | currency:undefined:0}}</td>
+            <td ng-class="{'active': criteria.sortBy === 'total_disbursements' }">{{c.total_disbursements | currency:undefined:0}}</td>
+            <td ng-class="{'active': criteria.sortBy === 'cash_on_hand' }">{{c.cash_on_hand | currency:undefined:0}}</td>
+            <td ng-class="{'active': criteria.sortBy === 'outstanding_loans' }">{{c.outstanding_loans | currency:undefined:0}}</td>
         </tr>
     </tbody>
 </table>

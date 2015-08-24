@@ -9,19 +9,8 @@ function config($routeProvider) {
         templateUrl: 'candidate/candidate.html',
         controller: 'CandidateCtrl',
         resolve: {
-            contributers: ['candidatesService', '$route', function(candidatesService, $route) {
-                
-                /* some extra stuff in here because api throws a fit if middle names are included */
-                var routeName = $route.current.params.name,
-                    newName = routeName.split(' ');
-
-                if (newName.length > 2) {
-                    newName.splice(2, newName.length - 1)
-                };
-
-                newName = newName.join(" ");
-
-                return candidatesService.getCandidateDetails(newName);
+            candidate: ['candidatesService', '$route', function(candidatesService, $route) {
+                return candidatesService.getCandidateDetails($route.current.params.name);
             }],
             name: ['$route', function($route) {
                 return $route.current.params.name;
@@ -30,8 +19,9 @@ function config($routeProvider) {
     });
 }
 
-CandidateCtrl.$inject = ['$scope','contributers','name'];
-function CandidateCtrl($scope, contributers, name) {
+CandidateCtrl.$inject = ['$scope','candidate','name'];
+function CandidateCtrl($scope, candidate, name) {
     $scope.name = name;
-    $scope.contributers = contributers;
+    $scope.contributors = candidate.contributors;
+    $scope.industries = candidate.industries;
 }

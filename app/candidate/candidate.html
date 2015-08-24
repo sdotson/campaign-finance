@@ -1,21 +1,42 @@
-<h2>{{name}}</h2>
-<h3>Top Contributers</h3>
-<table ng-show="contributers">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Direct Amount</th>
-            <th>Total Amount</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr ng-repeat="c in contributers">
-            <td>{{c.name}}</td>
-            <td>{{c.direct_amount | currency:undefined:0}}</td>
-            <td>{{c.total_amount | currency:undefined:0}}</td>
-        </tr>
-    </tbody>
-</table>
-<p ng-show="!contributers">Entity ID lookup for this candidate failed.</p>
-
 <p>Back to <a href="#/">home view.</a></p>
+<h2>{{name}}</h2>
+<div ng-show="industries">
+    <h3>Top industries</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Count</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="c in industries">
+                <td>{{c.name}}</td>
+                <td>{{c.count | number}}</td>
+                <td>{{c.amount | currency:undefined:0}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<p ng-show="!industries">No contributer data availabel for this candidate.</p>
+<div ng-show="contributors">
+    <h3>Top Contributors</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Direct Amount</th>
+                <th>Total Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="c in contributors">
+                <td>{{c.name}}</td>
+                <td>{{c.direct_amount | currency:undefined:0}}</td>
+                <td>{{c.total_amount | currency:undefined:0}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<p ng-show="!contributors">No contributer data availabel for this candidate.</p>

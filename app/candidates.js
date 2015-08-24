@@ -19,6 +19,25 @@ function candidatesService($http, $q) {
 
     function getCandidateDetails(name) {
 
+        var promise = getEntityID(name).then(function(response) {
+            return $q.all([
+                getContributers(response.data[0].id),
+                getIndustries(response.data[0].id)
+            ]).then(function(results) {
+                console.log(results);
+                return {
+                    contributors: results[0],
+                    industries: results[1]
+                };
+            });
+        });
+
+        return promise;
+
+    }
+
+    function getEntityID(name) {
+
        /* alter name to suit imperfect api lookup */
         var routeName = name,
             newName = routeName.split(' ');
@@ -49,16 +68,16 @@ function candidatesService($http, $q) {
                 type: "politician",
                 callback: 'JSON_CALLBACK',
             }
-        })
+        });
 
-        return request.then(getContributers, entityErrorHandler);
+        return request;
     }
 
-    function getContributers(response) {
+    function getContributers(id) {
         console.log('entity response');
-        console.log(response);
-        if (response.data[0]) {
-            var entityID = response.data[0].id;
+        console.log(id);
+        if (id) {
+            var entityID = id;
 
             var request = $http({
                 url: 'http://transparencydata.org/api/1.0/aggregates/pol/' + entityID + '/contributors.json',
@@ -78,11 +97,11 @@ function candidatesService($http, $q) {
 
     }
 
-    function getIndustries(response) {
-        var entityID = response.data[0].id;
+    function getIndustries(id) {
+        var entityID = id;
 
         var request = $http({
-            url: 'http://transparencydata.org/api/1.0/aggregates/pol/' + entityID + 'contributors/industries.json',
+            url: 'http://transparencydata.org/api/1.0/aggregates/pol/' + entityID + '/contributors/industries.json',
             method: 'JSONP',
             cache: true,
             params: {
