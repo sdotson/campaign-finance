@@ -19,10 +19,15 @@ function config($routeProvider) {
     });
 }
 
-CandidateCtrl.$inject = ['$scope','candidate','name'];
+CandidateCtrl.$inject = ['$scope', 'candidate', 'name'];
 function CandidateCtrl($scope, candidate, name) {
     $scope.name = name;
     $scope.candidate = candidate;
     $scope.contributors = candidate.contributors;
     $scope.industries = candidate.industries;
+
+    var lastName = name.split(',')[0].replace("'","");
+
+    $scope.headshotsrc = "/assets/images/" + lastName + ".jpg";
+
 }
