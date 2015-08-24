@@ -22,6 +22,7 @@ function config($routeProvider) {
 CandidateCtrl.$inject = ['$scope','candidate','name'];
 function CandidateCtrl($scope, candidate, name) {
     $scope.name = name;
+    $scope.candidate = candidate;
     $scope.contributors = candidate.contributors;
     $scope.industries = candidate.industries;
 }

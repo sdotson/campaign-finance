@@ -20,16 +20,20 @@ function candidatesService($http, $q) {
     function getCandidateDetails(name) {
 
         var promise = getEntityID(name).then(function(response) {
-            return $q.all([
-                getContributers(response.data[0].id),
-                getIndustries(response.data[0].id)
-            ]).then(function(results) {
-                console.log(results);
-                return {
-                    contributors: results[0],
-                    industries: results[1]
-                };
-            });
+            if (response.data[0]) {
+                return $q.all([
+                    getContributers(response.data[0].id),
+                    getIndustries(response.data[0].id)
+                ]).then(function(results) {
+                    console.log(results);
+                    return {
+                        contributors: results[0],
+                        industries: results[1]
+                    };
+                });
+            } else {
+                return false;
+            };
         });
 
         return promise;
@@ -74,34 +78,24 @@ function candidatesService($http, $q) {
     }
 
     function getContributers(id) {
-        console.log('entity response');
-        console.log(id);
-        if (id) {
-            var entityID = id;
 
-            var request = $http({
-                url: 'http://transparencydata.org/api/1.0/aggregates/pol/' + entityID + '/contributors.json',
-                method: 'JSONP',
-                cache: true,
-                params: {
-                    apikey: "5fb0ee006d904354961ae1e83e80011b",
-                    callback: 'JSON_CALLBACK',
-                }
-            });
+        var request = $http({
+            url: 'http://transparencydata.org/api/1.0/aggregates/pol/' + id + '/contributors.json',
+            method: 'JSONP',
+            cache: true,
+            params: {
+                apikey: "5fb0ee006d904354961ae1e83e80011b",
+                callback: 'JSON_CALLBACK',
+            }
+        });
 
-            return request.then(candidatesSuccess, errorHandler);
-
-        } else {
-            return false;  
-        };
-
+        return request.then(candidatesSuccess, errorHandler);
     }
 
     function getIndustries(id) {
-        var entityID = id;
 
         var request = $http({
-            url: 'http://transparencydata.org/api/1.0/aggregates/pol/' + entityID + '/contributors/industries.json',
+            url: 'http://transparencydata.org/api/1.0/aggregates/pol/' + id + '/contributors/industries.json',
             method: 'JSONP',
             cache: true,
             params: {
@@ -114,7 +108,6 @@ function candidatesService($http, $q) {
     }
 
     function candidatesSuccess(response) {
-        console.log(response);
         return response.data;
     }
 
