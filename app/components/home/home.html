@@ -23,8 +23,34 @@
              </select>
          </p>
     </form>
-    <canvas id="bar" class="chart chart-bar" data="data"
-  labels="labels"></canvas> 
+</div>
+<canvas id="bar" class="chart chart-bar" data="data"
+labels="labels" colours="colours"></canvas> 
+<div class="toolbar">
+    <form name="criteria">
+        <p>Show me
+            <select ng-model="criteria.sortBy" ng-init="criteria.sortBy = 'cash_on_hand'">
+                <option value="total_receipts">total receipts</option>
+                <option value="expenditures_supporting">outside supporting</option>
+                <option value="expenditures_opposing">outside opposing</option>
+                <option value="total_contributions">total contributions</option>
+                <option value="total_disbursements">total disbursements</option>
+                <option value="cash_on_hand">cash on hand</option>
+                <option value="outstanding_loans">outstanding loans</option>
+            </select>
+             including
+             <select ng-model="criteria.include" ng-init="criteria.include = ''">
+                <option value="">all parties</option>
+                <option value="D">Democrats</option>
+                <option value="R">Republicans</option>
+             </select>
+             sort
+             <select ng-model="criteria.sortDirection" ng-init="criteria.sortDirection = '-'">
+                <option value="+">ascending</option>
+                <option value="-">descending</option>
+             </select>
+         </p>
+    </form>
 </div>
 <table>
     <thead>

@@ -11,3 +11,12 @@
  .summary-header {
     margin-bottom: 0px;
  }
+
+ .pie-container {
+    width: 50%;
+    float: right;
+    
+     .chart-container {
+        margin-left: -16%;
+     }
+ }

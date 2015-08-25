@@ -3,10 +3,13 @@
     <h2 class="summary-header">{{name}}</h2>
     <p>Other info...</p>
 </div>
+<h3>Past Funding Sources (as of 9/29/2014)</h3>
 <div ng-show="candidate">
     <div>
-        <h3>Top industries</h3>
-        <canvas id="pie" class="chart chart-pie" data="data" labels="labels"></canvas>
+        <h4>Top industries</h4>
+        <div class="pie-container">
+            <canvas id="pie" class="chart chart-pie" data="data" labels="labels"></canvas>
+        </div>
         <table ng-show="industries">
             <thead>
                 <tr>
@@ -26,7 +29,7 @@
     </div>
     <p ng-show="!industries">No ndustry data availabel for this candidate.</p>
     <div>
-        <h3>Top Contributors</h3>
+        <h4>Top Contributors</h4>
         <table ng-show="contributors">
             <thead>
                 <tr>
@@ -49,4 +52,4 @@
 <div ng-show="!candidate">
     No data is available for this candidate.
 </div>
-<p>Back to <a href="#/">home view.</a></p>
+<p><a href="#/">Back to homepage.</a></p>

@@ -51,6 +51,13 @@ function HomeCtrl($scope, candidates) {
     $scope.labels = namesArray;
     $scope.series = ['Series A'];
 
+    $scope.colours = [{
+        fillColor: '#cdd0ec',
+        strokeColor: '#cdd0ec',
+        highlightFill: '#449e6b',
+        highlightStroke: '#449e6b'
+    }];
+
     $scope.data = [
       dataArray
     ];
