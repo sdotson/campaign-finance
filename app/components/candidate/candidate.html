@@ -4,7 +4,7 @@
     <p ng-show="candidate">
         <strong>Top industry contributors</strong> - <span ng-repeat="i in industries | limitTo: 3">{{i.name | lowercase}}<span ng-show="!$last">, </span></span><br>
         <strong>Top individual contributors</strong> - <span ng-repeat="c in contributors | limitTo: 3">{{c.name | lowercase}}<span ng-show="!$last">, </span></span><br>
-        <strong>Individual/PAC Ratio</strong> - {{ typeBreakdown.Individuals[1]/typeBreakdown.PACs[1] | number : 1}} : 1, Mostly {{ typeBreakdown.PACs[1] > typeBreakdown.Individuals[1] ? 'PAC' : 'Individual' }} funded.
+        <strong>Individual/PAC Ratio</strong> - {{ typeBreakdown.Individuals[1]/typeBreakdown.PACs[1] | number : 1}} : 1
     </p>
     <p ng-show="!candidate">
         There is no data for this candidate.
