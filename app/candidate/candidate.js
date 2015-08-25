@@ -1,4 +1,4 @@
-angular.module('candidate', ['ngRoute'])
+angular.module('candidate', ['ngRoute','chart.js'])
     .config(config)
     .controller('CandidateCtrl', CandidateCtrl);
 
@@ -29,5 +29,19 @@ function CandidateCtrl($scope, candidate, name) {
     var lastName = name.split(',')[0].replace("'","");
 
     $scope.headshotsrc = "/assets/images/" + lastName + ".jpg";
+
+
+    var industryNamesArray = [];
+    var industryDataArray = [];
+
+    $scope.industries.forEach(function(c) {
+        industryNamesArray.push(c.name);
+        industryDataArray.push(c.amount);
+    });
+
+    console.log(industryDataArray);
+
+    $scope.labels = industryNamesArray;
+    $scope.data = industryDataArray;
 
 }
