@@ -1,4 +1,4 @@
-angular.module('candidates', [])
+angular.module('cfa.services.candidates', [])
     .factory('candidatesService', candidatesService);
 
 candidatesService.$inject = ['$http','$q'];

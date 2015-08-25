@@ -1,4 +1,4 @@
-angular.module('home', ['ngRoute','candidates', 'chart.js'])
+angular.module('cfa.components.home', ['ngRoute','cfa.services.candidates', 'chart.js'])
     .config(config)
     .controller('HomeCtrl', HomeCtrl);
 
