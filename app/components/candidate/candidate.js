@@ -6,7 +6,7 @@ angular.module('candidate', ['ngRoute','chart.js'])
 config.$inject = ['$routeProvider'];
 function config($routeProvider) {
     $routeProvider.when('/candidate/:name', {
-        templateUrl: 'candidate/candidate.html',
+        templateUrl: 'components/candidate/candidate.html',
         controller: 'CandidateCtrl',
         resolve: {
             candidate: ['candidatesService', '$route', function(candidatesService, $route) {

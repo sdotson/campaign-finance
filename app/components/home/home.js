@@ -6,7 +6,7 @@ config.$inject = ['$routeProvider'];
 function config($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'home/home.html',
+        templateUrl: 'components/home/home.html',
         controller: 'HomeCtrl',
         resolve: {
             candidates: function(candidatesService) {
