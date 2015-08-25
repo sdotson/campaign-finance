@@ -52,8 +52,8 @@ function HomeCtrl($scope, candidates) {
     $scope.series = ['Series A'];
 
     $scope.colours = [{
-        fillColor: '#cdd0ec',
-        strokeColor: '#cdd0ec',
+        fillColor: '#de7a60',
+        strokeColor: '#de7a60',
         highlightFill: '#449e6b',
         highlightStroke: '#449e6b'
     }];
