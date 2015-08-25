@@ -25,7 +25,6 @@ function candidatesService($http, $q) {
                     getContributers(response.data[0].id),
                     getIndustries(response.data[0].id)
                 ]).then(function(results) {
-                    console.log(results);
                     return {
                         contributors: results[0],
                         industries: results[1]
@@ -89,7 +88,7 @@ function candidatesService($http, $q) {
             }
         });
 
-        return request.then(candidatesSuccess, errorHandler);
+        return request.then(successHandler, errorHandler);
     }
 
     function getIndustries(id) {
@@ -104,10 +103,23 @@ function candidatesService($http, $q) {
             }
         });
 
-        return request.then(candidatesSuccess, errorHandler);
+        return request.then(successHandler, errorHandler);
     }
 
     function candidatesSuccess(response) {
+
+        response.data.forEach(function(c) {
+           c.cash_on_hand = parseFloat(c.cash_on_hand);
+           c.total_receipts = parseFloat(c.total_receipts);
+           c.total_contributions = parseFloat(c.total_contributions);
+           c.total_disbursements = parseFloat(c.total_disbursements);
+           c.outstanding_loans = parseFloat(c.outstanding_loans);
+        });
+
+        return response.data;
+    }
+
+    function successHandler(response) {
         return response.data;
     }
 

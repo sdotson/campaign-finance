@@ -34,12 +34,12 @@ function CandidateCtrl($scope, candidate, name) {
     var industryNamesArray = [];
     var industryDataArray = [];
 
-    $scope.industries.forEach(function(c) {
-        industryNamesArray.push(c.name);
-        industryDataArray.push(c.amount);
-    });
-
-    console.log(industryDataArray);
+    if ($scope.industries) {
+        $scope.industries.forEach(function(c) {
+            industryNamesArray.push(c.name);
+            industryDataArray.push(c.amount);
+        });
+    };
 
     $scope.labels = industryNamesArray;
     $scope.data = industryDataArray;
