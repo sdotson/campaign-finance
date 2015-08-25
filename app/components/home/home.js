@@ -18,8 +18,8 @@ function config($routeProvider) {
     });
 }
 
-HomeCtrl.$inject = ['$scope','candidates'];
-function HomeCtrl($scope, candidates) {
+HomeCtrl.$inject = ['$scope','candidates','$filter'];
+function HomeCtrl($scope, candidates, $filter) {
   var namesArray = [];
   var dataArray = [];
 
@@ -33,7 +33,7 @@ function HomeCtrl($scope, candidates) {
       dataArray = [];
       namesArray = [];
       $scope.filteredCandidates.forEach(function(c) {
-        dataArray.push(c[newValue[0]]);
+        dataArray.push(parseInt(c[newValue[0]]));
         namesArray.push(c.name);
       });
 
@@ -57,6 +57,19 @@ function HomeCtrl($scope, candidates) {
         highlightFill: '#449e6b',
         highlightStroke: '#449e6b'
     }];
+
+    $scope.options = {
+      scaleLabel: function(label) {
+        return  '$' + label.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      },
+      tooltipTemplate: function(value) {
+        if (value.label)  {
+            return value.label + ": $" + value.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        } else {
+            return value.value;
+        };
+      }
+    }
 
     $scope.data = [
       dataArray
