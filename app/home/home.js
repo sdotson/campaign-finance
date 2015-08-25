@@ -4,7 +4,8 @@ angular.module('home', ['ngRoute','candidates', 'chart.js'])
 
 config.$inject = ['$routeProvider'];
 function config($routeProvider) {
-    $routeProvider.when('/', {
+    $routeProvider
+      .when('/', {
         templateUrl: 'home/home.html',
         controller: 'HomeCtrl',
         resolve: {
@@ -12,6 +13,8 @@ function config($routeProvider) {
                 return candidatesService.getCandidates();
             }
         }
+    }).otherwise({
+      redirectTo: '/'
     });
 }
 
