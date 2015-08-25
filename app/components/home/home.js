@@ -27,15 +27,21 @@ function HomeCtrl($scope, candidates) {
        namesArray.push(c.name);
     });
 
-    $scope.$watch('criteria.sortBy', function(newValue) {
+    $scope.filteredCandidates = candidates;
+
+    $scope.$watchGroup(['criteria.sortBy','criteria.sortDirection','criteria.include'], function(newValue) {
       dataArray = [];
-      candidates.forEach(function(c) {
-        dataArray.push(c[newValue]);
+      namesArray = [];
+      $scope.filteredCandidates.forEach(function(c) {
+        dataArray.push(c[newValue[0]]);
+        namesArray.push(c.name);
       });
 
       $scope.data = [
         dataArray
       ];
+
+      $scope.labels = namesArray;
       
     });
 

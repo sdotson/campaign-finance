@@ -41,7 +41,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr ng-repeat="c in candidates | filter: {'party': criteria.include} | orderBy: criteria.sortDirection + criteria.sortBy | limitTo: 15">
+        <tr ng-repeat="c in (filteredCandidates = (candidates | filter: {'party': criteria.include} | orderBy: criteria.sortDirection + criteria.sortBy | limitTo: 15))">
             <td><a ng-href="#/candidate/{{c.name}}">{{c.name}}</a></td>
             <td>{{c.party}}</td>
             <td ng-class="{'active': criteria.sortBy === 'expenditures_supporting' }">{{c.expenditures_supporting | currency:undefined:0}}</td>

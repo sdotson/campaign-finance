@@ -114,6 +114,8 @@ function candidatesService($http, $q) {
            c.total_contributions = parseFloat(c.total_contributions);
            c.total_disbursements = parseFloat(c.total_disbursements);
            c.outstanding_loans = parseFloat(c.outstanding_loans);
+           c.expenditures_opposing = parseFloat(c.expenditures_opposing);
+           c.expenditures_supporting = parseFloat(c.expenditures_supporting);
         });
 
         return response.data;
