@@ -18,8 +18,8 @@ function config($routeProvider) {
     });
 }
 
-HomeCtrl.$inject = ['$scope','candidates','$filter'];
-function HomeCtrl($scope, candidates, $filter) {
+HomeCtrl.$inject = ['$scope','candidates'];
+function HomeCtrl($scope, candidates) {
   var namesArray = [];
   var dataArray = [];
 
