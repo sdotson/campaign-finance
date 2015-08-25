@@ -25,6 +25,7 @@ function CandidateCtrl($scope, candidate, name) {
     $scope.candidate = candidate;
     $scope.contributors = candidate.contributors;
     $scope.industries = candidate.industries;
+    $scope.typeBreakdown = candidate.types;
 
     var lastName = name.split(',')[0].replace("'","");
 

@@ -23,11 +23,13 @@ function candidatesService($http, $q) {
             if (response.data[0]) {
                 return $q.all([
                     getContributers(response.data[0].id),
-                    getIndustries(response.data[0].id)
+                    getIndustries(response.data[0].id),
+                    getTypeBreakdown(response.data[0].id)
                 ]).then(function(results) {
                     return {
                         contributors: results[0],
-                        industries: results[1]
+                        industries: results[1],
+                        types: results[2]
                     };
                 });
             } else {
@@ -106,7 +108,25 @@ function candidatesService($http, $q) {
         return request.then(successHandler, errorHandler);
     }
 
+    function getTypeBreakdown(id) {
+
+        var request = $http({
+            url: 'http://transparencydata.org/api/1.0/aggregates/pol/' + id + '/contributors/type_breakdown.json',
+            method: 'JSONP',
+            cache: true,
+            params: {
+                apikey: "5fb0ee006d904354961ae1e83e80011b",
+                callback: 'JSON_CALLBACK',
+            }
+        });
+
+        return request.then(successHandler, errorHandler);
+    }
+
+
+
     function candidatesSuccess(response) {
+        console.log(response);
 
         response.data.forEach(function(c) {
            c.cash_on_hand = parseFloat(c.cash_on_hand);
@@ -122,6 +142,7 @@ function candidatesService($http, $q) {
     }
 
     function successHandler(response) {
+        console.log(response);
         return response.data;
     }
 
