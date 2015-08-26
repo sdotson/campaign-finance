@@ -47,7 +47,7 @@ var jsFiles = [
 gulp.task('minifyJs', function () {
     return gulp.src(jsFiles) //select all javascript files under js/ and any subdirectory
         .pipe(concat('production.min.js')) //the name of the resulting file
-        .pipe(uglify())
+        /*.pipe(ngmin())*/
         .pipe(gulp.dest('app/assets/production')) //the destination folder
         .pipe(notify({ message: 'Finished minifying JavaScript'}));
 });
@@ -64,13 +64,14 @@ gulp.task('clean', function (cb) {
   ], cb);
 });
 
-gulp.task('build',['clean'], function() {
+gulp.task('build', function() {
     return gulp.src(files,{base:'./app'})
     .pipe(gulp.dest('./build'));
 });
 
 gulp.task('sequence', function(callback) {
   runSequence('minifyJs',
+              'clean',
               'build',
               'jsInject',
               callback);
