@@ -1,5 +1,5 @@
 <div class="clearfix summary">
-    <img ng-src="{{headshotsrc}}" class="summary-headshot">
+    <img ng-src="{{headshotsrc | lowercase}}" class="summary-headshot">
     <h2 class="summary-header">{{name}}</h2>
     <p ng-show="candidate">
         <strong>Top industry contributors</strong> - <span ng-repeat="i in industries | limitTo: 3">{{i.name | lowercase}}<span ng-show="!$last">, </span></span><br>
