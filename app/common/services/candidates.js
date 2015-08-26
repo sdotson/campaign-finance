@@ -60,6 +60,9 @@ function candidatesService($http, $q) {
             case "PERRY, JAMES":
                 newName = "Rick Perry";
                 break;
+            case "SANTORUM, RICHARD":
+                newName = "RICK SANTORUM";
+                break;
         };
 
 

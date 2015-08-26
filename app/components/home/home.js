@@ -59,6 +59,7 @@ function HomeCtrl($scope, candidates) {
     }];
 
     $scope.options = {
+      responsive: true,
       scaleLabel: function(label) {
         return  '$' + label.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
       },
