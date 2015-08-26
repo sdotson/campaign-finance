@@ -53,12 +53,9 @@ gulp.task('minifyJs', function () {
 });
 
 gulp.task('jsInject', function () {
-  var target = gulp.src('./build/index.html');
-  // It's not necessary to read the files (will speed up things), we're only after their paths: 
-  var sources = gulp.src(['assets/production/production.min.js'], {read: false, cwd:'./build/'});
- 
-  return target.pipe(inject(sources),{relative: true, ignorePath: '/build/'})
-    .pipe(gulp.dest('./build'));
+    return gulp.src('./build/index.html')
+      .pipe(inject(gulp.src('assets/production/production.min.js', {read: false, cwd:"./build/"}), {relative: true, addRootSlash:false}))
+      .pipe(gulp.dest('./build'));
 });
 
 gulp.task('clean', function (cb) {
