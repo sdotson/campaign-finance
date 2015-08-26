@@ -4,6 +4,7 @@ var gulp = require('gulp'),
     ghpages = require('gulp-gh-pages'),
     concat = require('gulp-concat'),
     uglify = require('gulp-uglify'),
+    notify = require('gulp-notify'),
     del = require('del'),
     ngmin = require('gulp-ngmin');
 
@@ -29,7 +30,6 @@ var files = ['app/assets/css/*.css',
             'app/bower_components/angular-chart.js/dist/angular-chart.js',
             'app/bower_components/angular-chart.js/dist/angular-chart.css',
             "app/bower_components/Chart.js/Chart.min.js",
-            'app/utilities/calendar-range/calendarRange.js',
             'app/**/*.html',
             'app/app.js',
             'app/index.html',
@@ -38,6 +38,25 @@ var files = ['app/assets/css/*.css',
             'app/components/home/home.js',
             'app/common/services/candidates.js'
             ];
+
+var jsFiles = [
+    'app/bower_components/angular/angular.js',
+    'app/bower_components/angular-route/angular-route.js',
+    "app/bower_components/Chart.js/Chart.min.js",
+    'app/bower_components/angular-chart.js/dist/angular-chart.js',
+    'app/app.js',
+    'app/components/candidate/candidate.js',
+    'app/components/home/home.js',
+    'app/common/services/candidates.js'
+];
+
+gulp.task('minifyJs', function () {
+    return gulp.src(jsFiles) //select all javascript files under js/ and any subdirectory
+        .pipe(concat('production.min.js')) //the name of the resulting file
+        .pipe(uglify())
+        .pipe(gulp.dest('app/assets/min')) //the destination folder
+        .pipe(notify({ message: 'Finished minifying JavaScript'}));
+});
 
 gulp.task('clean', function (cb) {
   del([

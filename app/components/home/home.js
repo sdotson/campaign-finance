@@ -9,9 +9,9 @@ function config($routeProvider) {
         templateUrl: 'components/home/home.html',
         controller: 'HomeCtrl',
         resolve: {
-            candidates: function(candidatesService) {
+            candidates: ['candidatesService', function(candidatesService) {
                 return candidatesService.getCandidates();
-            }
+            }]
         }
     }).otherwise({
       redirectTo: '/'
