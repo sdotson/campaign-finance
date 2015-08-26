@@ -4,6 +4,7 @@ var gulp = require('gulp'),
     ghpages = require('gulp-gh-pages'),
     concat = require('gulp-concat'),
     uglify = require('gulp-uglify'),
+    del = require('del'),
     ngmin = require('gulp-ngmin');
 
 gulp.task('browser-sync', function() {
@@ -38,13 +39,18 @@ var files = ['app/assets/css/*.css',
             'app/common/services/candidates.js'
             ];
 
+gulp.task('clean', function (cb) {
+  del([
+    'build/**'
+  ], cb);
+});
 
 gulp.task('build', function() {
     return gulp.src(files,{base:'./app'})
     .pipe(gulp.dest('./build'));
 });
 
-gulp.task('deploy', ['build'],function() {
+gulp.task('deploy', ['clean','build'],function() {
     return gulp.src('./build/**/*').pipe(ghpages());
 });
 

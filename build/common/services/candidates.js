@@ -129,8 +129,6 @@ function candidatesService($http, $q) {
 
 
     function candidatesSuccess(response) {
-        console.log(response);
-
         response.data.forEach(function(c) {
            c.cash_on_hand = parseFloat(c.cash_on_hand);
            c.total_receipts = parseFloat(c.total_receipts);
