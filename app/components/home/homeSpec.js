@@ -10,7 +10,12 @@ describe("home", function() {
       $rootScope.$apply(function() {
           $location.path('/');
       });
-      
+      expect($route.current.controller).toBe("HomeCtrl");
+      expect($route.current.loadedTemplateUrl).toBe("components/home/home.html");
+
+      $rootScope.$apply(function() {
+          $location.path('/asdfasdfasdfasdfsadfdsaf');
+      });
       expect($route.current.controller).toBe("HomeCtrl");
       expect($route.current.loadedTemplateUrl).toBe("components/home/home.html");
 
