@@ -1,1 +1,0 @@
-angular.module('campaignFinanceApp', ['cfa.components.home','cfa.components.candidate']);
