@@ -6,7 +6,9 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     notify = require('gulp-notify'),
     del = require('del'),
-    ngmin = require('gulp-ngmin');
+    ngmin = require('gulp-ngmin'),
+    inject = require('gulp-inject'),
+    runSequence = require('run-sequence');
 
 gulp.task('browser-sync', function() {
     browserSync.init(["app/**", 'app/**','app/**'], {
@@ -25,18 +27,10 @@ gulp.task('sass', function () {
 
 var files = ['app/assets/css/*.css',
             'app/assets/images/*.jpg',
-            'app/bower_components/angular/angular.js',
-            'app/bower_components/angular-route/angular-route.js',
-            'app/bower_components/angular-chart.js/dist/angular-chart.js',
+            'app/assets/production/production.min.js',
             'app/bower_components/angular-chart.js/dist/angular-chart.css',
-            "app/bower_components/Chart.js/Chart.min.js",
-            'app/**/*.html',
-            'app/app.js',
             'app/index.html',
-            'app/**/*.html',
-            'app/components/candidate/candidate.js',
-            'app/components/home/home.js',
-            'app/common/services/candidates.js'
+            'app/**/*.html'
             ];
 
 var jsFiles = [
@@ -54,8 +48,17 @@ gulp.task('minifyJs', function () {
     return gulp.src(jsFiles) //select all javascript files under js/ and any subdirectory
         .pipe(concat('production.min.js')) //the name of the resulting file
         .pipe(uglify())
-        .pipe(gulp.dest('app/assets/min')) //the destination folder
+        .pipe(gulp.dest('app/assets/production')) //the destination folder
         .pipe(notify({ message: 'Finished minifying JavaScript'}));
+});
+
+gulp.task('jsInject', function () {
+  var target = gulp.src('./build/index.html');
+  // It's not necessary to read the files (will speed up things), we're only after their paths: 
+  var sources = gulp.src(['assets/production/production.min.js'], {read: false, cwd:'./build/'});
+ 
+  return target.pipe(inject(sources),{relative: true, ignorePath: '/build/'})
+    .pipe(gulp.dest('./build'));
 });
 
 gulp.task('clean', function (cb) {
@@ -64,12 +67,19 @@ gulp.task('clean', function (cb) {
   ], cb);
 });
 
-gulp.task('build', function() {
+gulp.task('build',['clean'], function() {
     return gulp.src(files,{base:'./app'})
     .pipe(gulp.dest('./build'));
 });
 
-gulp.task('deploy', ['clean','build'],function() {
+gulp.task('sequence', function(callback) {
+  runSequence('minifyJs',
+              'build',
+              'jsInject',
+              callback);
+});
+
+gulp.task('deploy', ['sequence'],function() {
     return gulp.src('./build/**/*').pipe(ghpages());
 });
 
