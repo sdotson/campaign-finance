@@ -17,10 +17,23 @@ module.exports = function(config) {
     files: [
       'node_modules/jquery/dist/jquery.js',
       'app/bower_components/angular/angular.js',
+      'app/bower_components/angular-route/angular-route.js',
       'app/bower_components/angular-mocks/angular-mocks.js',
-      'app/utilities/calendar-range/calendarRange.js',
-      'app/*.js',
-      'app/*.html' // for your directive templates
+      'app/bower_components/jquery/dist/jquery.js',
+      'app/bower_components/jasmine-jquery/lib/jasmine-jquery.js',
+      'app/bower_components/Chart.js/Chart.min.js',
+      'app/bower_components/angular-chart.js/dist/angular-chart.js',
+      'app/components/**/*.js',
+      'app/common/**/*.js',
+      'app/app.js',
+      'app/**/*.html', // for your directive templates
+      'app/*.html',
+        {
+            pattern: './mocks/*.json',
+            watched: true,
+            served: true,
+            included: false
+        }
     ],
 
 
