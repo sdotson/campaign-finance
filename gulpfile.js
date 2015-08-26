@@ -39,9 +39,9 @@ var jsFiles = [
     "app/bower_components/Chart.js/Chart.min.js",
     'app/bower_components/angular-chart.js/dist/angular-chart.js',
     'app/app.js',
+    'app/common/services/candidates.js',
     'app/components/candidate/candidate.js',
-    'app/components/home/home.js',
-    'app/common/services/candidates.js'
+    'app/components/home/home.js'
 ];
 
 gulp.task('minifyJs', function () {
