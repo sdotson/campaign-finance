@@ -47,7 +47,7 @@ var jsFiles = [
 gulp.task('minifyJs', function () {
     return gulp.src(jsFiles) //select all javascript files under js/ and any subdirectory
         .pipe(concat('production.min.js')) //the name of the resulting file
-        /*.pipe(ngmin())*/
+        .pipe(uglify())
         .pipe(gulp.dest('app/assets/production')) //the destination folder
         .pipe(notify({ message: 'Finished minifying JavaScript'}));
 });
