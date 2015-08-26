@@ -21,15 +21,23 @@ gulp.task('sass', function () {
         .pipe(gulp.dest('app/assets/css'));
 });
 
-var files = ['app/main.css',
-            'app/countries-list/*',
-            'app/country-detail/*',
-            'app/home/*',
+var files = ['app/assets/css/*.css',
+            'app/assets/images/*.jpg',
             'app/bower_components/angular/angular.js',
+            'app/bower_components/angular-route/angular-route.js',
+            'app/bower_components/angular-chart.js/dist/angular-chart.js',
+            'app/bower_components/angular-chart.js/dist/angular-chart.css',
+            "app/bower_components/Chart.js/Chart.min.js",
             'app/utilities/calendar-range/calendarRange.js',
-            'app/*.html',
-            'app/*.js'
+            'app/**/*.html',
+            'app/app.js',
+            'app/index.html',
+            'app/**/*.html',
+            'app/components/candidate/candidate.js',
+            'app/components/home/home.js',
+            'app/common/services/candidates.js'
             ];
+
 
 gulp.task('build', function() {
     return gulp.src(files,{base:'./app'})
