@@ -29,7 +29,7 @@ function CandidateCtrl($scope, candidate, name) {
 
     var lastName = name.split(',')[0].replace("'","");
 
-    $scope.headshotsrc = "/assets/images/" + lastName + ".jpg";
+    $scope.headshotsrc = "./assets/images/" + lastName + ".jpg";
 
 
     var industryNamesArray = [];
