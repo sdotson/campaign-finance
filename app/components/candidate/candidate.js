@@ -1,8 +1,6 @@
 angular.module('cfa.components.candidate', ['ngRoute','chart.js'])
     .config(candidateConfig)
-    .controller('CandidateCtrl', CandidateCtrl)
-    .directive('imageFade', imageFade);
-
+    .controller('CandidateCtrl', CandidateCtrl);
 
 candidateConfig.$inject = ['$routeProvider'];
 function candidateConfig($routeProvider) {
@@ -46,14 +44,4 @@ function CandidateCtrl($scope, candidate, name) {
     $scope.labels = industryNamesArray;
     $scope.data = industryDataArray;
 
-}
-
-imageFade.$inject = [];
-function imageFade() {
-    return {
-        restrict: 'E',
-        templateUrl: 'imageFade.html',
-        transclude: true,
-        scope: true
-    };
 }
