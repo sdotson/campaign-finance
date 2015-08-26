@@ -70,8 +70,7 @@ gulp.task('build', function() {
 });
 
 gulp.task('sequence', function(callback) {
-  runSequence('minifyJs',
-              'clean',
+  runSequence('clean',
               'build',
               'jsInject',
               callback);
@@ -83,4 +82,5 @@ gulp.task('deploy', ['sequence'],function() {
 
 gulp.task('default', ['browser-sync'], function () {
     gulp.watch("app/assets/sass/*/*.scss", ['sass']);
+    gulp.watch("app/**/*.js", ['minifyJs']);
 });
