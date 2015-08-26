@@ -82,5 +82,4 @@ gulp.task('deploy', ['sequence'],function() {
 
 gulp.task('default', ['browser-sync'], function () {
     gulp.watch("app/assets/sass/*/*.scss", ['sass']);
-    gulp.watch("app/**/*.js", ['minifyJs']);
 });
