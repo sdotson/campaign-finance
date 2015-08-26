@@ -143,7 +143,6 @@ function candidatesService($http, $q) {
     }
 
     function successHandler(response) {
-        console.log(response);
         return response.data;
     }
 

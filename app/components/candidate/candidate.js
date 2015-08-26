@@ -1,10 +1,10 @@
 angular.module('cfa.components.candidate', ['ngRoute','chart.js'])
-    .config(config)
+    .config(candidateConfig)
     .controller('CandidateCtrl', CandidateCtrl);
 
 
-config.$inject = ['$routeProvider'];
-function config($routeProvider) {
+candidateConfig.$inject = ['$routeProvider'];
+function candidateConfig($routeProvider) {
     $routeProvider.when('/candidate/:name', {
         templateUrl: 'components/candidate/candidate.html',
         controller: 'CandidateCtrl',
