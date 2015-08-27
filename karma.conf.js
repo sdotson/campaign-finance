@@ -15,7 +15,6 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'node_modules/jquery/dist/jquery.js',
       'app/bower_components/angular/angular.js',
       'app/bower_components/angular-route/angular-route.js',
       'app/bower_components/angular-mocks/angular-mocks.js',
@@ -23,8 +22,9 @@ module.exports = function(config) {
       'app/bower_components/jasmine-jquery/lib/jasmine-jquery.js',
       'app/bower_components/Chart.js/Chart.min.js',
       'app/bower_components/angular-chart.js/dist/angular-chart.js',
+      'app/common/services/*.js',
+      'app/common/directives/*.js',
       'app/components/**/*.js',
-      'app/common/**/*.js',
       'app/app.js',
       'app/**/*.html', // for your directive templates
       'app/*.html',
