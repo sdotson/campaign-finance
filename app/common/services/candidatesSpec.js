@@ -46,15 +46,15 @@ describe('candidatesService', function() {
     expect(candidatesService).toBeDefined();
   });
 
-  xit('should return list of candidates', function() {
+  it('should return list of candidates', function() {
     $httpBackend.expectGET(candidatesURL);
 
-    candidatesService.getcandidates();
+    candidatesService.getCandidates();
     $httpBackend.flush();
-    expect(candidatesService.candidates.length).toBeGreaterThan(0);
-    expect(candidatesService.candidates.length).toEqual(250);
-  });
 
+    expect(candidatesService.candidates.length).toBeGreaterThan(0);
+    expect(candidatesService.candidates.length).toEqual(15);
+  });
 
   xit('should return country object', function() {
     $httpBackend.expectGET(candidatesURL);
