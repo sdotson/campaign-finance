@@ -1,4 +1,4 @@
-angular.module('cfa.components.candidate', ['ngRoute','chart.js'])
+angular.module('cfa.components.candidate', ['ngRoute','chart.js','cfa.directives.cfaImage'])
     .config(candidateConfig)
     .controller('CandidateCtrl', CandidateCtrl);
 

@@ -6,6 +6,21 @@
  .summary-headshot {
     float: left;
     margin-right: 15px;
+    width: 85px;
+    height: 125px;
+    background-image: url(../images/candidate.png);
+
+    img {
+        opacity: 0;
+        -webkit-transition: all 250ms linear;
+        -moz-transition: all 250ms linear;
+        transition: all 250ms linear;
+    }
+
+    &.active img {
+        opacity: 1;
+    }
+
  }
 
  .summary-header {
@@ -20,3 +35,5 @@
         margin-left: -16%;
      }
  }
+
+
