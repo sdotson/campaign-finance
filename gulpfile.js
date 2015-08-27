@@ -27,6 +27,7 @@ gulp.task('sass', function () {
 
 var files = ['app/assets/css/*.css',
             'app/assets/images/*.jpg',
+            'app/assets/images/*.png',
             'app/assets/production/production.min.js',
             'app/bower_components/angular-chart.js/dist/angular-chart.css',
             'app/index.html',
