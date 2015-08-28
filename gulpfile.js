@@ -6,7 +6,6 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     notify = require('gulp-notify'),
     del = require('del'),
-    ngmin = require('gulp-ngmin'),
     inject = require('gulp-inject'),
     runSequence = require('run-sequence');
 
