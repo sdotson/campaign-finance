@@ -2,7 +2,6 @@ angular.module('campaignFinanceApp', ['cfa.components.home','cfa.components.cand
 
     .config(config);
 
-
 function config($httpProvider) {
     $httpProvider.interceptors.push(function ($rootScope) {
       $rootScope.loading = false;
