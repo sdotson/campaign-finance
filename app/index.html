@@ -20,6 +20,7 @@
         </header>
         <main class="main">
             <div class="content-width">
+                <div ng-show="loading">Loading...</div>
                 <div ng-view class="view"></div>
             </div>
         </main>
@@ -31,6 +32,7 @@
         <!-- inject:js -->
         <script type="text/javascript" src="bower_components/angular/angular.js"></script>
         <script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
+        <script type="text/javascript" src="bower_components/angular-resource/angular-resource.js"></script>
         <script src="bower_components/Chart.js/Chart.min.js"></script>
         <script src="bower_components/angular-chart.js/dist/angular-chart.js"></script>
         <script type="text/javascript" src="app.js"></script>
