@@ -2,8 +2,9 @@ angular.module('campaignFinanceApp', ['cfa.components.home','cfa.components.cand
 
     .config(config);
 
+config.$inject = ['$httpProvider'];
 function config($httpProvider) {
-    $httpProvider.interceptors.push(function ($rootScope) {
+    $httpProvider.interceptors.push(['$rootScope', function($rootScope) {
       $rootScope.loading = false;
       return function (promise) {
         $rootScope.loading = true;
@@ -14,5 +15,5 @@ function config($httpProvider) {
         };
         return promise.then(hide, hide);
       };
-    });
+    }]);
 }
