@@ -47,13 +47,18 @@ describe('candidatesService', function() {
   });
 
   it('should return list of candidates', function() {
-    $httpBackend.expectGET(candidatesURL);
+    var results;
 
-    candidatesService.getCandidates();
+    $httpBackend.expectGET(candidatesURL);
+    
+    candidatesService.getCandidates().then(function(response) {
+      results = response;
+    });
+
     $httpBackend.flush();
 
-    expect(candidatesService.candidates.length).toBeGreaterThan(0);
-    expect(candidatesService.candidates.length).toEqual(15);
+    expect(results.length).toBeGreaterThan(0);
+    expect(results.length).toEqual(25);
   });
 
   xit('should return country object', function() {
