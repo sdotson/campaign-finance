@@ -87,6 +87,9 @@ describe('candidatesService', function() {
 
     expect(results.contributors.length).toEqual(10);
     expect(results.industries.length).toEqual(10);
+    expect(results.types.Individuals.length).toEqual(2);
+    expect(results.types.PACs.length).toEqual(2);
+
   });
   
 
