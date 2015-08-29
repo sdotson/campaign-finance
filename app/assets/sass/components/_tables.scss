@@ -21,3 +21,28 @@ tbody tr:nth-child(even) {
 td.active {
     background-color: #ffe0d8;
 }
+
+tbody tr {
+    -moz-transition: all 250ms linear;
+    -webkit-transition: all 250ms linear;
+    transition: all 250ms linear;
+
+
+    &.ng-leave.ng-leave-active {
+      opacity: 0;
+      background: #ff3500 !important;
+    }
+    
+    &.ng-enter.ng-enter-active {
+      background: #00e96c !important;
+      opacity: 1;
+    }
+
+    &.ng-enter-stagger {
+      transition-delay: 500ms;
+    }
+
+    &.ng-leave-stagger {
+      transition-delay: 500ms;
+    }
+}

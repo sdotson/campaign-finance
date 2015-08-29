@@ -26,6 +26,10 @@ function CandidateCtrl($scope, candidate, name) {
     $scope.industries = candidate.industries;
     $scope.typeBreakdown = candidate.types;
 
+    $scope.options = {
+        responsive: true
+    };
+
     var lastName = name.split(',')[0].replace("'","");
 
     $scope.headshotsrc = "./assets/images/" + lastName + ".jpg";
