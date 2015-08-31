@@ -80,8 +80,7 @@ gulp.task('sequence', function(callback) {
 });
 
 gulp.task('deploy', ['sequence'],function() {
-    return gulp.src('./build/**/*').pipe(ghpages())
-    .pipe(notify({ message: 'Project deployed to gh-pages'}));
+    return gulp.src('./build/**/*').pipe(ghpages());
 });
 
 gulp.task('default', ['browser-sync'], function () {
