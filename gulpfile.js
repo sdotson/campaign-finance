@@ -36,12 +36,6 @@ var files = ['app/assets/css/*.css',
             ];
 
 var jsFiles = [
-    'app/bower_components/angular/angular.js',
-    'app/bower_components/angular-route/angular-route.js',
-    'app/bower_components/angular-animate/angular-animate.js',
-    'app/bower_components/angular-resource/angular-resource.js',
-    "app/bower_components/Chart.js/Chart.min.js",
-    'app/bower_components/angular-chart.js/dist/angular-chart.js',
     'app/app.js',
     'app/common/services/candidates.js',
     'app/common/directives/cfaImage.js',
