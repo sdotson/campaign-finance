@@ -48,19 +48,39 @@ var jsFiles = [
     'app/components/home/home.js'
 ];
 
-gulp.task('minifyJs', function () {
+var jsFilesVendor = [
+    'app/bower_components/angular/angular.js',
+    'app/bower_components/angular-route/angular-route.js',
+    'app/bower_components/angular-animate/angular-animate.js',
+    'app/bower_components/angular-resource/angular-resource.js',
+    "app/bower_components/Chart.js/Chart.min.js",
+    'app/bower_components/angular-chart.js/dist/angular-chart.js'
+]
+
+gulp.task('minifyJs', ['minifyJsVendor'], function () {
     return gulp.src(jsFiles) //select all javascript files under js/ and any subdirectory
         .pipe(sourcemaps.init())
         .pipe(concat('production.min.js')) //the name of the resulting file
         .pipe(uglify())
         .pipe(sourcemaps.write('./'))
-        .pipe(gulp.dest('app/assets/production')) //the destination folder
-        .pipe(notify({ message: 'Finished minifying JavaScript'}));
+        .pipe(gulp.dest('app/')) //the destination folder
+        .pipe(notify({ message: 'Finished minifying app JavaScript'}));
+});
+
+gulp.task('minifyJsVendor', function () {
+    return gulp.src(jsFilesVendor) //select all javascript files under js/ and any subdirectory
+        .pipe(sourcemaps.init())
+        .pipe(concat('vendor.min.js')) //the name of the resulting file
+        .pipe(uglify())
+        .pipe(sourcemaps.write('./'))
+        .pipe(gulp.dest('app/')) //the destination folder
+        .pipe(notify({ message: 'Finished minifying vendor JavaScript'}));
 });
 
 gulp.task('jsInject', function () {
-    return gulp.src('./build/index.html')
-      .pipe(inject(gulp.src('assets/production/production.min.js', {read: false, cwd:"./build/"}), {relative: true, addRootSlash:false}))
+    return gulp.src('./dist/index.html')
+      .pipe(inject(gulp.src('production.min.js', {read: false, cwd:"./dist/"}), {relative: true, addRootSlash:false}))
+      .pipe(inject(gulp.src('vendor.min.js', {read: false, cwd:"./dist/"}), {relative: true, addRootSlash:false, starttag: '<!-- inject:vendor:{{ext}} -->'}))
       .pipe(gulp.dest('./build'));
 });
 
@@ -83,7 +103,7 @@ gulp.task('sequence', function(callback) {
 });
 
 gulp.task('deploy', ['sequence'],function() {
-    return gulp.src('./build/**/*').pipe(ghpages());
+    return gulp.src('./dist/**/*').pipe(ghpages());
 });
 
 gulp.task('default', ['browser-sync'], function () {
