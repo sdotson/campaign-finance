@@ -7,6 +7,7 @@ var gulp = require('gulp'),
     notify = require('gulp-notify'),
     del = require('del'),
     inject = require('gulp-inject'),
+    sourcemaps = require('gulp-sourcemaps'),
     runSequence = require('run-sequence');
 
 gulp.task('browser-sync', function() {
@@ -49,8 +50,10 @@ var jsFiles = [
 
 gulp.task('minifyJs', function () {
     return gulp.src(jsFiles) //select all javascript files under js/ and any subdirectory
+        .pipe(sourcemaps.init())
         .pipe(concat('production.min.js')) //the name of the resulting file
         .pipe(uglify())
+        .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest('app/assets/production')) //the destination folder
         .pipe(notify({ message: 'Finished minifying JavaScript'}));
 });
@@ -67,7 +70,7 @@ gulp.task('clean', function (cb) {
   ], cb);
 });
 
-gulp.task('build', function() {
+gulp.task('build', [''], function() {
     return gulp.src(files,{base:'./app'})
     .pipe(gulp.dest('./build'));
 });

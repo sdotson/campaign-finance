@@ -130,13 +130,13 @@ function candidatesService($http, $q) {
 
     function candidatesSuccess(response) {
         response.data.forEach(function(c) {
-           c.cash_on_hand = parseFloat(c.cash_on_hand, 10);
-           c.total_receipts = parseFloat(c.total_receipts, 10);
-           c.total_contributions = parseFloat(c.total_contributions, 10);
-           c.total_disbursements = parseFloat(c.total_disbursements, 10);
-           c.outstanding_loans = parseFloat(c.outstanding_loans, 10);
-           c.expenditures_opposing = parseFloat(c.expenditures_opposing, 10);
-           c.expenditures_supporting = parseFloat(c.expenditures_supporting, 10);
+           c.cash_on_hand = parseInt(c.cash_on_hand, 10);
+           c.total_receipts = parseInt(c.total_receipts, 10);
+           c.total_contributions = parseInt(c.total_contributions, 10);
+           c.total_disbursements = parseInt(c.total_disbursements, 10);
+           c.outstanding_loans = parseInt(c.outstanding_loans, 10);
+           c.expenditures_opposing = parseInt(c.expenditures_opposing, 10);
+           c.expenditures_supporting = parseInt(c.expenditures_supporting, 10);
         });
 
         return response.data;

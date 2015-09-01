@@ -1,4 +1,4 @@
-angular.module('campaignFinanceApp', ['cfa.components.home','cfa.components.candidate', 'ngResource'])
+angular.module('campaignFinanceApp', ['cfa.components.home','cfa.components.candidate', 'ngResource', 'ngAnimate'])
 
     .config(config);
 

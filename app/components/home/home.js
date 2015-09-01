@@ -33,7 +33,7 @@ function HomeCtrl($scope, candidates) {
       dataArray = [];
       namesArray = [];
       $scope.filteredCandidates.forEach(function(c) {
-        dataArray.push(parseInt(c[newValue[0]]));
+        dataArray.push(parseInt(c[newValue[0]],10));
         namesArray.push(c.name);
       });
 
