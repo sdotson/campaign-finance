@@ -70,7 +70,7 @@ gulp.task('clean', function (cb) {
   ], cb);
 });
 
-gulp.task('build', [''], function() {
+gulp.task('build', function() {
     return gulp.src(files,{base:'./app'})
     .pipe(gulp.dest('./build'));
 });
