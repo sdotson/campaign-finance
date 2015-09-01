@@ -26,10 +26,23 @@ gulp.task('sass', function () {
 });
 
 var files = ['app/assets/css/*.css',
+            'app/bower_components/angular/angular.js',
+            'app/bower_components/angular-route/angular-route.js',
+            'app/bower_components/angular-animate/angular-animate.js',
+            'app/bower_components/angular-resource/angular-resource.js',
+            "app/bower_components/Chart.js/Chart.min.js",
+            'app/bower_components/angular-chart.js/dist/angular-chart.js'
+            'app/app.js',
+            'app/common/services/candidates.js',
+            'app/common/directives/cfaImage.js',
+            'app/components/candidate/candidate.js',
+            'app/components/home/home.js'
             'app/assets/images/*.jpg',
             'app/assets/images/*.png',
             'app/production.min.js',
+            'app/production.min.js.map',
             'app/vendor.min.js',
+            'app/vendor.min.js.map',
             'app/bower_components/angular-chart.js/dist/angular-chart.css',
             'app/index.html',
             'app/**/*.html'
