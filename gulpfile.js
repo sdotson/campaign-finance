@@ -28,7 +28,8 @@ gulp.task('sass', function () {
 var files = ['app/assets/css/*.css',
             'app/assets/images/*.jpg',
             'app/assets/images/*.png',
-            'app/assets/production/production.min.js',
+            'app/production.min.js',
+            'app/vendor.min.js',
             'app/bower_components/angular-chart.js/dist/angular-chart.css',
             'app/index.html',
             'app/**/*.html'
@@ -81,18 +82,18 @@ gulp.task('jsInject', function () {
     return gulp.src('./dist/index.html')
       .pipe(inject(gulp.src('production.min.js', {read: false, cwd:"./dist/"}), {relative: true, addRootSlash:false}))
       .pipe(inject(gulp.src('vendor.min.js', {read: false, cwd:"./dist/"}), {relative: true, addRootSlash:false, starttag: '<!-- inject:vendor:{{ext}} -->'}))
-      .pipe(gulp.dest('./build'));
+      .pipe(gulp.dest('./dist'));
 });
 
 gulp.task('clean', function (cb) {
   del([
-    'build/**'
+    'dist/**'
   ], cb);
 });
 
 gulp.task('build', function() {
     return gulp.src(files,{base:'./app'})
-    .pipe(gulp.dest('./build'));
+    .pipe(gulp.dest('./dist'));
 });
 
 gulp.task('sequence', function(callback) {

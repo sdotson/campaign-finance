@@ -1,0 +1,87 @@
+<div class="clearfix summary">
+    <cfa-image src="{{headshotsrc | lowercase}}" class="summary-headshot"></cfa-image>
+    <h2 class="summary-header">{{name}}</h2>
+    <p ng-show="candidate">
+        <strong>Top industry contributors</strong> - <span ng-repeat="i in industries | limitTo: 3">{{i.name | lowercase}}<span ng-show="!$last">, </span></span><br>
+        <strong>Top individual contributors</strong> - <span ng-repeat="c in contributors | limitTo: 3">{{c.name | lowercase}}<span ng-show="!$last">, </span></span><br>
+        <strong>Individual/PAC Ratio</strong> - {{ typeBreakdown.Individuals[1]/typeBreakdown.PACs[1] | number : 1}} : 1
+    </p>
+    <p ng-show="!candidate">
+        There is no data for this candidate.
+    </p>
+</div>
+<h3>Past Funding Sources (as of 9/29/2014)</h3>
+<div ng-show="candidate">
+    <div>
+        <h4>Top industries</h4>
+        <div class="pie-container">
+            <canvas id="pie" class="chart chart-pie" data="data" labels="labels" options="options"></canvas>
+        </div>
+        <table ng-show="industries">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Count</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="c in industries">
+                    <td>{{c.name}}</td>
+                    <td>{{c.count | number}}</td>
+                    <td>{{c.amount | currency:undefined:0}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <p ng-show="!industries">No Industry data availabel for this candidate.</p>
+    <div>
+        <h4>Top Contributors</h4>
+        <table ng-show="contributors">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Direct Amount</th>
+                    <th>Total Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="c in contributors">
+                    <td>{{c.name}}</td>
+                    <td>{{c.direct_amount | currency:undefined:0}}</td>
+                    <td>{{c.total_amount | currency:undefined:0}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <p ng-show="!contributors">No contributor data available for this candidate.</p>
+    <div>
+        <h4>Contributer Breakdown</h4>
+        <table ng-show="typeBreakdown">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Count</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Individuals</td>
+                    <td>{{typeBreakdown.Individuals[0] | number}}</td>
+                    <td>{{typeBreakdown.Individuals[1] | currency:undefined:0}}</td>
+                </tr>
+                <tr>
+                    <td>PACs</td>
+                    <td>{{typeBreakdown.PACs[0] | number}}</td>
+                    <td>{{typeBreakdown.PACs[1] | currency:undefined:0}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <p ng-show="!typeBreakdown">No type breakdown data available for this candidate.</p>
+</div>
+<div ng-show="!candidate">
+    No data is available for this candidate.
+</div>
+<p><a href="#/">Back to homepage.</a></p>

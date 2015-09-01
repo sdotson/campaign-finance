@@ -1,0 +1,82 @@
+<div class="toolbar">
+    <form name="criteria">
+        <p>Show me
+            <select ng-model="criteria.sortBy" ng-init="criteria.sortBy = 'cash_on_hand'">
+                <option value="total_receipts">total receipts</option>
+                <option value="expenditures_supporting">outside supporting</option>
+                <option value="expenditures_opposing">outside opposing</option>
+                <option value="total_contributions">total contributions</option>
+                <option value="total_disbursements">total disbursements</option>
+                <option value="cash_on_hand">cash on hand</option>
+                <option value="outstanding_loans">outstanding loans</option>
+            </select>
+             including
+             <select ng-model="criteria.include" ng-init="criteria.include = ''">
+                <option value="">all parties</option>
+                <option value="D">Democrats</option>
+                <option value="R">Republicans</option>
+             </select>
+             sort
+             <select ng-model="criteria.sortDirection" ng-init="criteria.sortDirection = '-'">
+                <option value="+">ascending</option>
+                <option value="-">descending</option>
+             </select>
+         </p>
+    </form>
+</div>
+<canvas id="bar" class="chart chart-bar" data="data"
+labels="labels" colours="colours" options="options"></canvas> 
+<div class="toolbar">
+    <form name="criteria">
+        <p>Show me
+            <select ng-model="criteria.sortBy" ng-init="criteria.sortBy = 'cash_on_hand'">
+                <option value="total_receipts">total receipts</option>
+                <option value="expenditures_supporting">outside supporting</option>
+                <option value="expenditures_opposing">outside opposing</option>
+                <option value="total_contributions">total contributions</option>
+                <option value="total_disbursements">total disbursements</option>
+                <option value="cash_on_hand">cash on hand</option>
+                <option value="outstanding_loans">outstanding loans</option>
+            </select>
+             including
+             <select ng-model="criteria.include" ng-init="criteria.include = ''">
+                <option value="">all parties</option>
+                <option value="D">Democrats</option>
+                <option value="R">Republicans</option>
+             </select>
+             sort
+             <select ng-model="criteria.sortDirection" ng-init="criteria.sortDirection = '-'">
+                <option value="+">ascending</option>
+                <option value="-">descending</option>
+             </select>
+         </p>
+    </form>
+</div>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Party</th>
+            <th>Outside Supporting</th>
+            <th>Outside Opposing</th>
+            <th>Total receipts</th>
+            <th>Total contributions</th>
+            <th>Total disbursements</th>
+            <th>Cash on hand</th>
+            <th>Outstanding loans</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="c in (filteredCandidates = (candidates | filter: {'party': criteria.include} | orderBy: criteria.sortDirection + criteria.sortBy | limitTo: 15))">
+            <td><a ng-href="#/candidate/{{c.name}}">{{c.name}}</a></td>
+            <td>{{c.party}}</td>
+            <td ng-class="{'active': criteria.sortBy === 'expenditures_supporting' }">{{c.expenditures_supporting | currency:undefined:0}}</td>
+            <td ng-class="{'active': criteria.sortBy === 'expenditures_opposing' }">{{c.expenditures_opposing | currency:undefined:0}}</td>
+            <td ng-class="{'active': criteria.sortBy === 'total_receipts' }">{{c.total_receipts | currency:undefined:0}}</td>
+            <td ng-class="{'active': criteria.sortBy === 'total_contributions' }">{{c.total_contributions | currency:undefined:0}}</td>
+            <td ng-class="{'active': criteria.sortBy === 'total_disbursements' }">{{c.total_disbursements | currency:undefined:0}}</td>
+            <td ng-class="{'active': criteria.sortBy === 'cash_on_hand' }">{{c.cash_on_hand | currency:undefined:0}}</td>
+            <td ng-class="{'active': criteria.sortBy === 'outstanding_loans' }">{{c.outstanding_loans | currency:undefined:0}}</td>
+        </tr>
+    </tbody>
+</table>
