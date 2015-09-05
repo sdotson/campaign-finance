@@ -122,7 +122,8 @@ gulp.task('build', function() {
 });
 
 gulp.task('sequence', function(callback) {
-  runSequence('clean',
+  runSequence('test',
+              'clean',
               'build',
               'jsInject',
               callback);
