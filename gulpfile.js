@@ -6,6 +6,7 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     notify = require('gulp-notify'),
     del = require('del'),
+    karma = require('gulp-karma'),
     inject = require('gulp-inject'),
     sourcemaps = require('gulp-sourcemaps'),
     runSequence = require('run-sequence');
@@ -23,6 +24,23 @@ gulp.task('sass', function () {
         .pipe(sass({outputStyle: 'compressed'}))
         .pipe(concat('styles.css'))
         .pipe(gulp.dest('app/assets/css'));
+});
+
+gulp.task('test', function() {
+  // Be sure to return the stream
+  // NOTE: Using the fake './foobar' so as to run the files
+  // listed in karma.conf.js INSTEAD of what was passed to
+  // gulp.src !
+  return gulp.src('./foobar')
+    .pipe(karma({
+      configFile: 'karma.conf.js',
+      action: 'run'
+    }))
+    .on('error', function(err) {
+      // Make sure failed tests cause gulp to exit non-zero
+      console.log(err);
+      this.emit('end'); //instead of erroring the stream, end it
+    });
 });
 
 var files = ['app/assets/css/*.css',
