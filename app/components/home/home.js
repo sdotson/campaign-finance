@@ -12,6 +12,7 @@
         .when('/', {
           templateUrl: 'components/home/home.html',
           controller: 'HomeCtrl',
+          controllerAs: 'home',
           resolve: {
               candidates: ['candidatesService', function(candidatesService) {
                   return candidatesService.getCandidates();
