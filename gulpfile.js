@@ -63,7 +63,8 @@ var files = ['app/assets/css/*.css',
             'app/vendor.min.js.map',
             'app/bower_components/angular-chart.js/dist/angular-chart.css',
             'app/index.html',
-            'app/**/*.html'
+            'app/**/*.html',
+            'app/favicon.png'
             ];
 
 var jsFiles = [
